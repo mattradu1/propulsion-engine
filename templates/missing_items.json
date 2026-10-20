@@ -1,0 +1,33 @@
+{
+  "_about": "Plain-word lines for every Definition of Ready item (file 2, OS-09 v2) plus the S3 rules. 'plain' is what Matt and the Notion Missing Items field show. 'short' fills {top_item} in a reminder; 'where' fills {where_to_find}; 'still_needed' is the line used in a Template 1 'Still needed' slot. Only entries with approved: true may reach a client. Lines marked approved: false were drafted by the engine build on 19 Oct and NEED MATT'S WRITTEN APPROVAL by Fri 30 Oct 12:00; until then any row needing them stalls amber (S1 r7), never silently.",
+  "items": {
+    "deposit": {"plain": "Deposit not received.", "client_facing": false, "blocks": "ready"},
+    "agreement_signed": {"plain": "Agreement not signed.", "client_facing": false, "blocks": "ready"},
+    "kickoff": {"plain": "Kickoff not done (call or written kickoff form returned by the signer).", "client_facing": false, "blocks": "ready"},
+    "kickoff_form_returned": {"plain": "Written kickoff form sent but not returned.", "short": "your kickoff form", "where": "in the kickoff email I sent you", "still_needed": null, "approved": false, "client_facing": true, "blocks": "ready"},
+    "onboarding_form": {"plain": "Onboarding form not complete.", "short": "the rest of your onboarding form", "where": "in your welcome email", "still_needed": null, "approved": false, "client_facing": true, "blocks": "ready"},
+    "voice": {"plain": "Voice missing: 'I' or 'we', plus words they use and words they never use.", "short": "whether you say \"I\" or \"we\", and words you do and don't use", "where": "in your onboarding form", "still_needed": null, "approved": false, "client_facing": true, "blocks": "ready"},
+    "facts_in_writing": {"plain": "Facts not confirmed in writing: years in the trade, guarantee, training, insurance.", "short": "your years in the trade, guarantee, training and insurance, in your words", "where": "in your onboarding form", "still_needed": null, "approved": false, "client_facing": true, "blocks": "ready"},
+    "areas": {"plain": "Areas list or footer line missing.", "short": "the towns you cover", "where": "in your onboarding form", "still_needed": null, "approved": false, "client_facing": true, "blocks": "ready"},
+    "photos": {"plain": "Fewer than 8 usable, labelled photos (or exclusions not stated).", "short": "your project photos", "where": "on your upload link", "still_needed": null, "approved": false, "client_facing": true, "blocks": "ready"},
+    "photo_exclusions": {"plain": "Photos not to show: not answered (\"none\" is a valid answer).", "short": "any photos you don't want shown", "where": "in your onboarding form", "still_needed": null, "approved": false, "client_facing": true, "blocks": "ready"},
+    "legal_identity": {"plain": "Legal name, company number, or registered office / 'service area only' missing.", "short": "your registered business name and company number", "where": "in your onboarding form", "still_needed": null, "approved": false, "client_facing": true, "blocks": "ready"},
+    "ico": {"plain": "ICO number missing (blocks Gate B only).", "short": null, "where": null, "still_needed": "Have you paid the ICO's yearly data protection fee? If you're not sure, the ICO website has a short online check. Send me the result.", "approved": true, "client_facing": true, "blocks": "gate_b"},
+    "gbp_url": {"plain": "Full Google Business Profile URL missing (a share.google short link doesn't count).", "short": "the full link to your Google Business Profile", "where": "in your onboarding form", "still_needed": null, "approved": false, "client_facing": true, "blocks": "ready"},
+    "enquiry_routing": {"plain": "Where enquiries go (email and mobile) or the funnel URL missing.", "short": "the email and mobile where enquiries should go", "where": "in your onboarding form", "still_needed": null, "approved": false, "client_facing": true, "blocks": "ready"},
+    "registrar": {"plain": "Registrar not recorded, or DNS call not booked.", "short": "who your domain is registered with", "where": "in your onboarding form", "still_needed": null, "approved": false, "client_facing": true, "blocks": "ready"},
+    "dates_agreed": {"plain": "Preview, feedback and launch dates not agreed.", "client_facing": false, "blocks": "ready"},
+    "baseline": {"plain": "Baseline numbers missing (enquiries a month, % that become jobs, average job value, or 'unknown').", "short": "rough enquiry numbers (or \"unknown\")", "where": "in your onboarding form", "still_needed": null, "approved": false, "client_facing": true, "blocks": "ready"},
+    "trading_name": {"plain": "More than one trading name: the one the site uses isn't in the signer's writing yet.", "client_facing": true, "signer_only": true, "template": "trading_name_question", "approved": true, "blocks": "ready"},
+    "short_answer": {"plain": "Answer under 5 words for a copy field: counts as missing (S3 r7).", "client_facing": true, "per_field": true, "approved": false, "blocks": "ready"},
+    "logo": {"plain": "No logo file: clean text version used.", "short": null, "where": null, "still_needed": "If you have your logo as a file, reply with it. If not, I'll set your name in clean type and you can swap it in later.", "approved": true, "client_facing": true, "blocks": "none"},
+    "logo_png": {"plain": "SVG logo conversion failed: PNG asked for.", "short": null, "where": null, "still_needed": "Could you send the logo as a PNG? A photo or screenshot of it is fine too.", "approved": true, "client_facing": true, "blocks": "none"},
+    "photo_origin": {"plain": "Photo origin not confirmed in writing (no camera data, stock or supplier look).", "short": null, "where": null, "still_needed": "Quick check: were these all done by you or your team at {business}? I can only show your own work.", "approved": true, "client_facing": true, "blocks": "none"}
+  },
+  "per_field_questions": {
+    "_about": "S1 r4 / S3 r7: one fixed question per form field, approved by Matt before 30 Oct. NONE APPROVED YET. Drafts below need Matt.",
+    "team_description": {"question": "Who does the work: just you, or a team? A sentence or two is plenty.", "approved": false},
+    "what_makes_you_different": {"question": "What do your customers say you do better than others? A sentence or two in your own words.", "approved": false},
+    "services": {"question": "Which jobs do you want more of? List them in your own words.", "approved": false}
+  }
+}

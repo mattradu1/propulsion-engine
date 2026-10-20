@@ -1,0 +1,438 @@
+{
+  "_source": "docs/build-engine-rulebook.md, section 'Every draft'. Wording copied by script, word for word.",
+  "_kinds": {
+    "engine_auto": "Engine-labelled email. In supervised mode: a Gmail draft for Matt, never sent.",
+    "matt_sends": "Drafted for Matt; Matt presses send.",
+    "still_needed_line": "Only as the 'Still needed' line of a reminder or confirmation already due.",
+    "embedded_line": "A fixed line inside an email Matt sends.",
+    "matt_sets": "Matt sets it himself. The engine never sends it."
+  },
+  "templates": {
+    "vacation_reply": {
+      "title": "Layer 1: Gmail vacation reply (you set it)",
+      "text": "Away until Monday 9 November\n\nHi, thanks for your email. I'm away until Monday 9 November and your message is safe in my inbox. If your files save automatically you'll get a short confirmation; if not, they're still safe and I'll confirm when I'm back. Previews go out from Monday 9 November, and I'll reply to anything that needs me personally by Wednesday 11 November.\n\nMatt, Propulsion · This is an automatic reply.",
+      "variants": [
+        {
+          "id": "main",
+          "text": "Away until Monday 9 November\n\nHi, thanks for your email. I'm away until Monday 9 November and your message is safe in my inbox. If your files save automatically you'll get a short confirmation; if not, they're still safe and I'll confirm when I'm back. Previews go out from Monday 9 November, and I'll reply to anything that needs me personally by Wednesday 11 November.\n\nMatt, Propulsion · This is an automatic reply."
+        }
+      ],
+      "kind": "matt_sets",
+      "links": [],
+      "signer_only": false,
+      "reminder": false,
+      "red_allowed": false,
+      "once_per_trip": false,
+      "client_words": [],
+      "note": "Set by Matt in Gmail. Never sent by the engine."
+    },
+    "away_line": {
+      "title": "Away line in every kickoff and welcome email",
+      "text": "I'm away 31 October to 8 November. Your build carries on while I'm away, previews go out from Monday 9 November, and email is the only channel I'll see.",
+      "variants": [
+        {
+          "id": "main",
+          "text": "I'm away 31 October to 8 November. Your build carries on while I'm away, previews go out from Monday 9 November, and email is the only channel I'll see."
+        }
+      ],
+      "kind": "embedded_line",
+      "links": [],
+      "signer_only": false,
+      "reminder": false,
+      "red_allowed": false,
+      "once_per_trip": false,
+      "client_words": [],
+      "note": "Goes inside kickoff and welcome emails Matt sends."
+    },
+    "reminder_1": {
+      "title": "Reminder 1 (day 2)",
+      "text": "Hi {first_name}, automatic reminder: to start your website I still need {top_item}. You'll find it {where_to_find}. Pick up where you left off: {form_link}. Photos: {upload_link}. Or just reply with a voice note or the photos. Thanks, Matt",
+      "variants": [
+        {
+          "id": "main",
+          "text": "Hi {first_name}, automatic reminder: to start your website I still need {top_item}. You'll find it {where_to_find}. Pick up where you left off: {form_link}. Photos: {upload_link}. Or just reply with a voice note or the photos. Thanks, Matt"
+        }
+      ],
+      "kind": "engine_auto",
+      "links": [
+        "form_link",
+        "upload_link"
+      ],
+      "signer_only": false,
+      "reminder": true,
+      "red_allowed": false,
+      "once_per_trip": false,
+      "client_words": []
+    },
+    "reminder_2": {
+      "title": "Reminder 2 (day 4)",
+      "text": "Hi {first_name}, automatic reminder: one thing would get your site moving: {top_item}. Reply to this email with it (even a rough version is fine), or use your upload link: {upload_link}. Your form: {form_link}. Thanks, Matt",
+      "variants": [
+        {
+          "id": "main",
+          "text": "Hi {first_name}, automatic reminder: one thing would get your site moving: {top_item}. Reply to this email with it (even a rough version is fine), or use your upload link: {upload_link}. Your form: {form_link}. Thanks, Matt"
+        }
+      ],
+      "kind": "engine_auto",
+      "links": [
+        "form_link",
+        "upload_link"
+      ],
+      "signer_only": false,
+      "reminder": true,
+      "red_allowed": false,
+      "once_per_trip": false,
+      "client_words": []
+    },
+    "reminder_3": {
+      "title": "Reminder 3 (day 7)",
+      "text": "Hi {first_name}, last automatic reminder: your preview date is {preview_date}, and to hit it I need {top_item} by {date_needed}. Upload link: {upload_link}. Form: {form_link}. If now's a bad time, just reply with a date that suits and I'll work around it. Thanks, Matt",
+      "variants": [
+        {
+          "id": "main",
+          "text": "Hi {first_name}, last automatic reminder: your preview date is {preview_date}, and to hit it I need {top_item} by {date_needed}. Upload link: {upload_link}. Form: {form_link}. If now's a bad time, just reply with a date that suits and I'll work around it. Thanks, Matt"
+        }
+      ],
+      "kind": "engine_auto",
+      "links": [
+        "form_link",
+        "upload_link"
+      ],
+      "signer_only": false,
+      "reminder": true,
+      "red_allowed": false,
+      "once_per_trip": false,
+      "client_words": []
+    },
+    "template_1": {
+      "title": "Template 1: files saved",
+      "text": "Thanks {first_name}, these are saved to your project: {n} photos{, other files}. {Still needed: {missing_items}. | That's all the files I need for now.} Matt (automatic confirmation)",
+      "variants": [
+        {
+          "id": "still_needed",
+          "text": "Thanks {first_name}, these are saved to your project: {n} photos{other_files}. Still needed: {missing_items}. Matt (automatic confirmation)"
+        },
+        {
+          "id": "all_done",
+          "text": "Thanks {first_name}, these are saved to your project: {n} photos{other_files}. That's all the files I need for now. Matt (automatic confirmation)"
+        }
+      ],
+      "kind": "engine_auto",
+      "links": [],
+      "signer_only": false,
+      "reminder": false,
+      "red_allowed": false,
+      "once_per_trip": false,
+      "client_words": []
+    },
+    "template_2": {
+      "title": "Template 2: photo worries",
+      "text": "Thanks {first_name}, send them anyway: I'll pick the best and tidy them up, and you'll see exactly which ones I've used before anything goes live. Upload them here: {upload_link}, or reply with a few at a time. Matt (automatic confirmation)",
+      "variants": [
+        {
+          "id": "main",
+          "text": "Thanks {first_name}, send them anyway: I'll pick the best and tidy them up, and you'll see exactly which ones I've used before anything goes live. Upload them here: {upload_link}, or reply with a few at a time. Matt (automatic confirmation)"
+        }
+      ],
+      "kind": "engine_auto",
+      "links": [
+        "upload_link"
+      ],
+      "signer_only": false,
+      "reminder": false,
+      "red_allowed": false,
+      "once_per_trip": false,
+      "client_words": []
+    },
+    "template_3": {
+      "title": "Template 3: changes logged",
+      "text": "Thanks {first_name}, I've logged these against your project, in your words: {bullets}. I'll go through them with you when I'm back on Monday 9 November. Matt (automatic confirmation)",
+      "variants": [
+        {
+          "id": "main",
+          "text": "Thanks {first_name}, I've logged these against your project, in your words: {bullets}. I'll go through them with you when I'm back on Monday 9 November. Matt (automatic confirmation)"
+        }
+      ],
+      "kind": "engine_auto",
+      "links": [],
+      "signer_only": false,
+      "reminder": false,
+      "red_allowed": false,
+      "once_per_trip": false,
+      "client_words": [
+        "bullets"
+      ]
+    },
+    "template_4": {
+      "title": "Template 4: fact update",
+      "text": "Thanks {first_name}, I've noted: {fact, in their words}. I'll confirm it with you before anything goes live. Matt (automatic confirmation)",
+      "variants": [
+        {
+          "id": "main",
+          "text": "Thanks {first_name}, I've noted: {fact}. I'll confirm it with you before anything goes live. Matt (automatic confirmation)"
+        }
+      ],
+      "kind": "engine_auto",
+      "links": [],
+      "signer_only": false,
+      "reminder": false,
+      "red_allowed": false,
+      "once_per_trip": false,
+      "client_words": [
+        "fact"
+      ]
+    },
+    "template_5": {
+      "title": "Template 5: chasing",
+      "text": "Preview ready or later: \"Thanks {first_name}, your project is in the queue and your preview is due from Monday 9 November.\" Otherwise: \"Thanks {first_name}, your project is safe and I'll update you when I'm back on 9 November.\" Matt (automatic confirmation)",
+      "variants": [
+        {
+          "id": "preview_ready_or_later",
+          "text": "Thanks {first_name}, your project is in the queue and your preview is due from Monday 9 November. Matt (automatic confirmation)",
+          "requires_build_status_min": 6
+        },
+        {
+          "id": "otherwise",
+          "text": "Thanks {first_name}, your project is safe and I'll update you when I'm back on 9 November. Matt (automatic confirmation)"
+        }
+      ],
+      "kind": "engine_auto",
+      "links": [],
+      "signer_only": false,
+      "reminder": false,
+      "red_allowed": false,
+      "once_per_trip": false,
+      "client_words": []
+    },
+    "photo_origin": {
+      "title": "Photo origin check (once)",
+      "text": "Quick check: were these all done by you or your team at {business}? I can only show your own work.",
+      "variants": [
+        {
+          "id": "main",
+          "text": "Quick check: were these all done by you or your team at {business}? I can only show your own work."
+        }
+      ],
+      "kind": "still_needed_line",
+      "links": [],
+      "signer_only": false,
+      "reminder": false,
+      "red_allowed": false,
+      "once_per_trip": false,
+      "client_words": []
+    },
+    "ico_question": {
+      "title": "ICO question (plain words)",
+      "text": "Have you paid the ICO's yearly data protection fee? If you're not sure, the ICO website has a short online check. Send me the result.",
+      "variants": [
+        {
+          "id": "main",
+          "text": "Have you paid the ICO's yearly data protection fee? If you're not sure, the ICO website has a short online check. Send me the result."
+        }
+      ],
+      "kind": "still_needed_line",
+      "links": [],
+      "signer_only": false,
+      "reminder": false,
+      "red_allowed": false,
+      "once_per_trip": false,
+      "client_words": []
+    },
+    "preview_email": {
+      "title": "Preview email (AG-16, you send)",
+      "text": "{first_name}, your new site is ready to review:\n\n[View your website preview]({preview_link})\n\nSend all your changes in one reply by {feedback_date} and we'll have them done within 2 working days. That keeps your launch on {launch_date}.",
+      "variants": [
+        {
+          "id": "main",
+          "text": "{first_name}, your new site is ready to review:\n\n[View your website preview]({preview_link})\n\nSend all your changes in one reply by {feedback_date} and we'll have them done within 2 working days. That keeps your launch on {launch_date}."
+        }
+      ],
+      "kind": "matt_sends",
+      "links": [
+        "preview_link"
+      ],
+      "signer_only": false,
+      "reminder": false,
+      "red_allowed": false,
+      "once_per_trip": false,
+      "client_words": []
+    },
+    "nudge_48h": {
+      "title": "+48h nudge (AG-16, you send)",
+      "text": "Hi {first_name}, any thoughts on the preview? Even \"looks good\" helps: it keeps {launch_date} on track.",
+      "variants": [
+        {
+          "id": "main",
+          "text": "Hi {first_name}, any thoughts on the preview? Even \"looks good\" helps: it keeps {launch_date} on track."
+        }
+      ],
+      "kind": "matt_sends",
+      "links": [],
+      "signer_only": false,
+      "reminder": false,
+      "red_allowed": false,
+      "once_per_trip": false,
+      "client_words": []
+    },
+    "approval_question": {
+      "title": "Approval question (you send)",
+      "text": "Reply YES and I'll book in putting the site live exactly as it is.",
+      "variants": [
+        {
+          "id": "main",
+          "text": "Reply YES and I'll book in putting the site live exactly as it is."
+        }
+      ],
+      "kind": "matt_sends",
+      "links": [],
+      "signer_only": true,
+      "reminder": false,
+      "red_allowed": false,
+      "once_per_trip": false,
+      "client_words": []
+    },
+    "contradictory_feedback": {
+      "title": "Contradictory feedback (to the signer only)",
+      "text": "I've had a couple of different steers on {item}. Which would you like: {option_a} or {option_b}?",
+      "variants": [
+        {
+          "id": "main",
+          "text": "I've had a couple of different steers on {item}. Which would you like: {option_a} or {option_b}?"
+        }
+      ],
+      "kind": "matt_sends",
+      "links": [],
+      "signer_only": true,
+      "reminder": false,
+      "red_allowed": false,
+      "once_per_trip": false,
+      "client_words": [
+        "item",
+        "option_a",
+        "option_b"
+      ]
+    },
+    "holding_line": {
+      "title": "Holding line (red email, once per trip)",
+      "text": "Thanks {first_name}, I've read this and I'll ring you on Monday 9 November. Matt (automatic confirmation)",
+      "variants": [
+        {
+          "id": "main",
+          "text": "Thanks {first_name}, I've read this and I'll ring you on Monday 9 November. Matt (automatic confirmation)"
+        }
+      ],
+      "kind": "engine_auto",
+      "links": [],
+      "signer_only": false,
+      "reminder": false,
+      "red_allowed": true,
+      "once_per_trip": true,
+      "client_words": []
+    },
+    "link_wont_open": {
+      "title": "Link won't open",
+      "text": "Thanks {first_name}, I can't open that link automatically. Could you use your upload link instead? {upload_link} Matt (automatic confirmation)",
+      "variants": [
+        {
+          "id": "main",
+          "text": "Thanks {first_name}, I can't open that link automatically. Could you use your upload link instead? {upload_link} Matt (automatic confirmation)"
+        }
+      ],
+      "kind": "engine_auto",
+      "links": [
+        "upload_link"
+      ],
+      "signer_only": false,
+      "reminder": false,
+      "red_allowed": false,
+      "once_per_trip": false,
+      "client_words": []
+    },
+    "whatsapp_away": {
+      "title": "WhatsApp Business away message (you set it, clients who use WhatsApp)",
+      "text": "Thanks for your message. WhatsApp isn't checked until 9 November. Please email photos and details to matt.radu@propulsionmarketing.co.uk or use the upload link in your welcome email.",
+      "variants": [
+        {
+          "id": "main",
+          "text": "Thanks for your message. WhatsApp isn't checked until 9 November. Please email photos and details to matt.radu@propulsionmarketing.co.uk or use the upload link in your welcome email."
+        }
+      ],
+      "kind": "matt_sets",
+      "links": [],
+      "signer_only": false,
+      "reminder": false,
+      "red_allowed": false,
+      "once_per_trip": false,
+      "client_words": [],
+      "note": "Set by Matt in WhatsApp Business. Never sent by the engine."
+    },
+    "trading_name_question": {
+      "title": "Trading name question (signer only)",
+      "text": "Quick one, {first_name}: which name should go on the website, {a} or {b}?",
+      "variants": [
+        {
+          "id": "main",
+          "text": "Quick one, {first_name}: which name should go on the website, {a} or {b}?"
+        }
+      ],
+      "kind": "matt_sends",
+      "links": [],
+      "signer_only": true,
+      "reminder": false,
+      "red_allowed": false,
+      "once_per_trip": false,
+      "client_words": []
+    },
+    "logo_file_question": {
+      "title": "Logo file question (Still needed line)",
+      "text": "If you have your logo as a file, reply with it. If not, I'll set your name in clean type and you can swap it in later.",
+      "variants": [
+        {
+          "id": "main",
+          "text": "If you have your logo as a file, reply with it. If not, I'll set your name in clean type and you can swap it in later."
+        }
+      ],
+      "kind": "still_needed_line",
+      "links": [],
+      "signer_only": false,
+      "reminder": false,
+      "red_allowed": false,
+      "once_per_trip": false,
+      "client_words": []
+    },
+    "urgent_not_ours": {
+      "title": "Urgent, not ours (approved sender only)",
+      "text": "Thanks {first_name}. If your current site has a security problem, contact whoever hosts it now. I'll ring you on Monday 9 November. Matt (automatic confirmation)",
+      "variants": [
+        {
+          "id": "main",
+          "text": "Thanks {first_name}. If your current site has a security problem, contact whoever hosts it now. I'll ring you on Monday 9 November. Matt (automatic confirmation)"
+        }
+      ],
+      "kind": "engine_auto",
+      "links": [],
+      "signer_only": false,
+      "reminder": false,
+      "red_allowed": true,
+      "once_per_trip": false,
+      "client_words": []
+    },
+    "logo_png": {
+      "title": "Logo as PNG (only if SVG conversion fails)",
+      "text": "Could you send the logo as a PNG? A photo or screenshot of it is fine too.",
+      "variants": [
+        {
+          "id": "main",
+          "text": "Could you send the logo as a PNG? A photo or screenshot of it is fine too."
+        }
+      ],
+      "kind": "still_needed_line",
+      "links": [],
+      "signer_only": false,
+      "reminder": false,
+      "red_allowed": false,
+      "once_per_trip": false,
+      "client_words": []
+    }
+  }
+}
