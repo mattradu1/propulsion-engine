@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "historyId": "7520060c-52b5-4ca2-8bcc-a7ed653a11d5",
+  "currentRevision": null,
+  "pendingChanges": false,
+  "files": {
+    "AGENTS.md": {
+      "hash": "1d4f0c8ca2507b94fd7c9df709fff01416adbd51a0f922b9d6ed2f40129147d5",
+      "content": "/root/.cache/hyperframes/history/7520060c-52b5-4ca2-8bcc-a7ed653a11d5/blobs/1d/1d4f0c8ca2507b94fd7c9df709fff01416adbd51a0f922b9d6ed2f40129147d5"
+    },
+    "CLAUDE.md": {
+      "hash": "1d4f0c8ca2507b94fd7c9df709fff01416adbd51a0f922b9d6ed2f40129147d5",
+      "content": "/root/.cache/hyperframes/history/7520060c-52b5-4ca2-8bcc-a7ed653a11d5/blobs/1d/1d4f0c8ca2507b94fd7c9df709fff01416adbd51a0f922b9d6ed2f40129147d5"
+    },
+    "assets/fonts/IBMPlexSans_400Regular.ttf": {
+      "hash": "8685116dfbcfa639621631c4af0ad62e52ddeb9979acbec0007ccef2e4801a27",
+      "content": "/root/.cache/hyperframes/history/7520060c-52b5-4ca2-8bcc-a7ed653a11d5/blobs/86/8685116dfbcfa639621631c4af0ad62e52ddeb9979acbec0007ccef2e4801a27"
+    },
+    "assets/fonts/IBMPlexSans_500Medium.ttf": {
+      "hash": "0ebb5ad4c9c57f2a2860f43ae9fa69024c045b380b2a73b332d6f40c39f4a294",
+      "content": "/root/.cache/hyperframes/history/7520060c-52b5-4ca2-8bcc-a7ed653a11d5/blobs/0e/0ebb5ad4c9c57f2a2860f43ae9fa69024c045b380b2a73b332d6f40c39f4a294"
+    },
+    "assets/fonts/IBMPlexSans_600SemiBold.ttf": {
+      "hash": "659f916ce1922bd4fecac7cd5f26018817a2946327a5dd00169c8bab14ae2c58",
+      "content": "/root/.cache/hyperframes/history/7520060c-52b5-4ca2-8bcc-a7ed653a11d5/blobs/65/659f916ce1922bd4fecac7cd5f26018817a2946327a5dd00169c8bab14ae2c58"
+    },
+    "assets/fonts/SpaceGrotesk_500Medium.ttf": {
+      "hash": "d8135bce6603398f3d0cdb478a018d7fa869b0168d037a9408cad23e030bfa7a",
+      "content": "/root/.cache/hyperframes/history/7520060c-52b5-4ca2-8bcc-a7ed653a11d5/blobs/d8/d8135bce6603398f3d0cdb478a018d7fa869b0168d037a9408cad23e030bfa7a"
+    },
+    "assets/fonts/SpaceGrotesk_600SemiBold.ttf": {
+      "hash": "279a5d22b8ab377f41706af566610667db3941b069b50187b98af09ca3b08f91",
+      "content": "/root/.cache/hyperframes/history/7520060c-52b5-4ca2-8bcc-a7ed653a11d5/blobs/27/279a5d22b8ab377f41706af566610667db3941b069b50187b98af09ca3b08f91"
+    },
+    "assets/fonts/SpaceGrotesk_700Bold.ttf": {
+      "hash": "8fb63865c6afd083723dc1775548306b7751f20397bebcb79646032c598c81b9",
+      "content": "/root/.cache/hyperframes/history/7520060c-52b5-4ca2-8bcc-a7ed653a11d5/blobs/8f/8fb63865c6afd083723dc1775548306b7751f20397bebcb79646032c598c81b9"
+    },
+    "assets/js/gsap.min.js": {
+      "hash": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+      "content": "/root/.cache/hyperframes/history/7520060c-52b5-4ca2-8bcc-a7ed653a11d5/blobs/c1/c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280"
+    },
+    "hyperframes.json": {
+      "hash": "53dbce1e19aa713cbb12ee0bc4d206143b45ab15e6ffbfcaa8f69572d4d24d50",
+      "content": "/root/.cache/hyperframes/history/7520060c-52b5-4ca2-8bcc-a7ed653a11d5/blobs/53/53dbce1e19aa713cbb12ee0bc4d206143b45ab15e6ffbfcaa8f69572d4d24d50"
+    },
+    "index.html": {
+      "hash": "7c8307ca3c88b9c50438514b1d727bd35d2073b313dcfcfb0e732e772ad48726",
+      "content": "/root/.cache/hyperframes/history/7520060c-52b5-4ca2-8bcc-a7ed653a11d5/blobs/7c/7c8307ca3c88b9c50438514b1d727bd35d2073b313dcfcfb0e732e772ad48726"
+    },
+    "meta.json": {
+      "hash": "87572655f2f7faefd296f88d291d5e8984a85ae8c3d281a54715f76829d4c8a3",
+      "content": "/root/.cache/hyperframes/history/7520060c-52b5-4ca2-8bcc-a7ed653a11d5/blobs/87/87572655f2f7faefd296f88d291d5e8984a85ae8c3d281a54715f76829d4c8a3"
+    },
+    "package.json": {
+      "hash": "14b3a4c1a314a967fbdfd6d44c33be790de665c9e133bf500451a9ca5424566e",
+      "content": "/root/.cache/hyperframes/history/7520060c-52b5-4ca2-8bcc-a7ed653a11d5/blobs/14/14b3a4c1a314a967fbdfd6d44c33be790de665c9e133bf500451a9ca5424566e"
+    }
+  },
+  "revisions": {},
+  "checks": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "snapshots": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "renders": {
+    "latest": {
+      "id": "6d4c240d-1b0b-4f6e-90ec-cd5059dd284e",
+      "completedAt": 1792555081675,
+      "output": "/home/claude/hero-video/out/raw-mobile.mp4",
+      "status": "completed",
+      "revision": null
+    },
+    "retainedRevisions": []
+  },
+  "pendingArtifactCleanup": []
+}

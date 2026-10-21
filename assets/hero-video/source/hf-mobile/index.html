@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1350" />
+<script src="assets/js/gsap.min.js"></script>
+<style>
+@font-face{font-family:"Space Grotesk";src:url(assets/fonts/SpaceGrotesk_500Medium.ttf);font-weight:500}
+@font-face{font-family:"Space Grotesk";src:url(assets/fonts/SpaceGrotesk_600SemiBold.ttf);font-weight:600}
+@font-face{font-family:"Space Grotesk";src:url(assets/fonts/SpaceGrotesk_700Bold.ttf);font-weight:700}
+@font-face{font-family:"IBM Plex Sans";src:url(assets/fonts/IBMPlexSans_400Regular.ttf);font-weight:400}
+@font-face{font-family:"IBM Plex Sans";src:url(assets/fonts/IBMPlexSans_500Medium.ttf);font-weight:500}
+@font-face{font-family:"IBM Plex Sans";src:url(assets/fonts/IBMPlexSans_600SemiBold.ttf);font-weight:600}
+:root{--ground:#04070A;--blue:#006FF2;--ink:#EEF2F6;--mute:#8A97A6;--dim:#4A5562;--line:#16202A;--card:#0B1117}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1350px;overflow:hidden;background:var(--ground)}
+body{font-family:"IBM Plex Sans",sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+#root{position:relative;width:100%;height:100%;overflow:hidden;background:var(--ground)}
+.scene{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;perspective:1600px}
+.hd{font-family:"Space Grotesk",sans-serif;letter-spacing:-0.03em}
+
+/* depth floor */
+#floor{position:absolute;inset:0;perspective:900px;overflow:hidden}
+#grid{position:absolute;left:50%;top:58%;width:5200px;height:3200px;margin-left:-2600px;
+  background-image:linear-gradient(rgba(140,165,190,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(140,165,190,.07) 1px,transparent 1px);
+  background-size:120px 120px;transform:rotateX(78deg);transform-origin:50% 0;
+  -webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,.0),#000 12%,rgba(0,0,0,.0) 55%)}
+#vig{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(30,45,60,.35),transparent 60%),radial-gradient(ellipse at 50% 120%,transparent 40%,rgba(0,0,0,.7))}
+
+/* phone */
+.phone{position:relative;width:380px;height:760px;border-radius:52px;background:#0A0F14;border:1.5px solid #233140;
+  box-shadow:0 60px 120px rgba(0,0,0,.65),inset 0 0 0 8px #070B0F;padding:14px;flex:none;transform-style:preserve-3d}
+.screen{position:relative;width:100%;height:100%;border-radius:40px;overflow:hidden;background:#F4F5F7;color:#111}
+.status{height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 26px;font:600 15px "IBM Plex Sans";color:#111}
+.notch{position:absolute;top:10px;left:50%;width:110px;height:30px;margin-left:-55px;border-radius:20px;background:#05080B;z-index:5}
+
+/* scene 1 */
+.s1 .wrap{display:flex;align-items:center}
+.kick{font:500 26px "IBM Plex Sans";color:var(--mute);letter-spacing:.02em;margin-bottom:22px}
+.h1{font-weight:600;line-height:1.02;color:var(--ink)}
+.sub{font:400 30px/1.4 "IBM Plex Sans";color:var(--mute);margin-top:26px}
+.search{margin:18px 18px 0;height:54px;border-radius:27px;background:#fff;border:1px solid #D9DDE2;display:flex;align-items:center;padding:0 20px;gap:12px;font:500 19px "IBM Plex Sans";color:#111;box-shadow:0 4px 14px rgba(0,0,0,.06)}
+.mag{width:18px;height:18px;border:2.5px solid #6B7682;border-radius:50%;position:relative;flex:none}
+.mag:after{content:"";position:absolute;width:8px;height:2.5px;background:#6B7682;right:-7px;bottom:-3px;transform:rotate(45deg)}
+.caret{width:2px;height:24px;background:#111}
+.res{margin:22px 18px 0;padding:18px;border-radius:18px;background:#fff;border:1px solid #E3E6EA}
+.bar{height:12px;border-radius:6px;background:#D9DDE2;margin-bottom:10px}
+.bar.t{height:16px;background:#B9C0C8;width:70%}
+
+/* split */
+.split{display:flex;align-items:center;justify-content:center;transform-style:preserve-3d}
+.side{display:flex;flex-direction:column;align-items:center;gap:22px}
+.meta{text-align:center}
+.lab{font:600 34px "Space Grotesk";letter-spacing:-0.01em;color:var(--mute);display:inline-flex;align-items:center;gap:12px}
+.lab.after{color:var(--ink)}
+.dot{width:12px;height:12px;border-radius:50%;background:var(--blue);display:inline-block}
+.cap{font-family:"IBM Plex Sans";font-weight:400;line-height:1.35;color:var(--mute);margin-top:10px}
+.cap b{color:var(--ink);font-weight:500}
+.tag{position:absolute;top:44px;right:52px;font:500 18px "IBM Plex Sans";letter-spacing:.14em;text-transform:uppercase;color:var(--dim);border:1px solid #1E2933;border-radius:20px;padding:8px 16px}
+
+/* before site */
+.old{background:#E9E6DF;color:#3a3a3a}
+.old .hdr{background:#5C6E5A;color:#E8E8E0;font:700 9px Arial,sans-serif;padding:8px 10px;letter-spacing:.02em;line-height:1.5}
+.old .nav{background:#C9C2B3;font:9px Arial,sans-serif;color:#333;padding:5px 8px;word-spacing:6px}
+.old .ban{height:150px;margin:8px;background:linear-gradient(90deg,#CFCAC0,#DAD5CB,#CFCAC0);background-size:200% 100%}
+.old p{font:9.5px/1.35 Arial,sans-serif;color:#555;padding:0 10px;margin-bottom:7px}
+.old .boxes{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;padding:4px 10px}
+.old .boxes div{height:56px;background:#D3CDC1;border:1px solid #BDB6A8}
+.old .load{position:absolute;top:44px;left:0;height:3px;background:#7C8A99;width:0}
+.old .veil{position:absolute;inset:44px 0 0 0;background:rgba(233,230,223,.55)}
+.spin{position:absolute;left:50%;top:44%;width:54px;height:54px;margin:-27px 0 0 -27px;border-radius:50%;border:5px solid rgba(0,0,0,.12);border-top-color:#666}
+.cookie{position:absolute;left:10px;right:10px;bottom:14px;background:#fff;border:1px solid #bbb;padding:10px;font:9px/1.4 Arial,sans-serif;color:#444;box-shadow:0 4px 12px rgba(0,0,0,.15)}
+.cookie span{display:inline-block;border:1px solid #999;padding:2px 6px;margin:6px 4px 0 0;font-size:9px}
+
+/* after site */
+.new{background:#FFFFFF;color:#0A0F14}
+.new .top{display:flex;justify-content:space-between;align-items:center;padding:12px 24px 0}
+.new .brand{font:700 15px "Space Grotesk";letter-spacing:-.01em;color:#0A0F14}
+.burger{width:22px;height:14px;border-top:2px solid #0A0F14;border-bottom:2px solid #0A0F14;position:relative}
+.burger:after{content:"";position:absolute;left:0;right:0;top:4px;border-top:2px solid #0A0F14}
+.new h3{font:600 36px/1.05 "Space Grotesk";letter-spacing:-.03em;padding:34px 24px 0}
+.new .lead{font:400 17px/1.45 "IBM Plex Sans";color:#4A5562;padding:14px 24px 0}
+.rows{padding:26px 24px 0}
+.row{display:flex;justify-content:space-between;align-items:center;height:58px;border-bottom:1px solid #E7EAEE;font:500 17px "IBM Plex Sans"}
+.chev{width:9px;height:9px;border-right:2px solid #8A97A6;border-top:2px solid #8A97A6;transform:rotate(45deg)}
+.cta{position:absolute;left:0;right:0;bottom:0;padding:14px 16px 22px;background:#fff;border-top:1px solid #E7EAEE;display:flex;gap:10px}
+.btn{flex:1;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;font:600 18px "IBM Plex Sans"}
+.btn.call{background:var(--blue);color:#fff}
+.btn.enq{border:1.5px solid #0A0F14;color:#0A0F14;position:relative;overflow:hidden}
+.ripple{position:absolute;width:40px;height:40px;border-radius:50%;background:rgba(0,111,242,.25);left:50%;top:50%;margin:-20px 0 0 -20px;opacity:0}
+
+/* scene 3 */
+.s3 .col{display:flex;flex-direction:column;align-items:center;transform-style:preserve-3d}
+.clock{font-weight:600;font-size:200px;line-height:1;color:var(--ink)}
+.s3 .sub{text-align:center;margin-top:20px;font-size:38px}
+.desk{position:relative;margin-top:30px;transform-style:preserve-3d;perspective:1200px}
+.flat{position:absolute;left:50%;top:0;margin-left:-190px;transform-origin:50% 0}
+.flat .screen{background:#05080B}
+.glow{position:absolute;inset:0;border-radius:40px;background:radial-gradient(circle at 50% 30%,rgba(0,111,242,.55),rgba(0,111,242,0) 70%);opacity:0}
+.flat .note{position:absolute;left:18px;right:18px;top:120px;height:84px;border-radius:20px;background:rgba(255,255,255,.12);opacity:0}
+
+/* scene 4 screens */
+.inbox{background:#F4F5F7}
+.inbox h4{font:600 28px "Space Grotesk";letter-spacing:-.02em;padding:16px 22px 10px}
+.mail{display:flex;gap:12px;padding:16px 22px;border-bottom:1px solid #E3E6EA;background:#fff}
+.av{width:38px;height:38px;border-radius:50%;background:#D9DDE2;flex:none}
+.mail .l1{font:600 15px "IBM Plex Sans";color:#111}
+.mail .l2{font:400 13px/1.35 "IBM Plex Sans";color:#5B6672;margin-top:3px}
+.mail.old2 .l1{font-weight:400;color:#5B6672}
+.unread{width:10px;height:10px;border-radius:50%;background:#9AA4AE;flex:none;margin-top:6px}
+.lock{background:linear-gradient(180deg,#0E1720,#05080B);color:#fff}
+.lock .status{color:#fff}
+.lock .t{font:500 92px "Space Grotesk";letter-spacing:-.04em;text-align:center;margin-top:40px}
+.lock .d{font:400 17px "IBM Plex Sans";text-align:center;color:#9FB0C2}
+.ncard{margin:16px 16px 0;padding:16px 18px;border-radius:22px;background:rgba(255,255,255,.12);backdrop-filter:blur(10px)}
+.ncard .n1{display:flex;align-items:center;gap:10px;font:600 15px "IBM Plex Sans"}
+.ncard .n2{font:400 15px/1.4 "IBM Plex Sans";color:#D5DEE7;margin-top:6px}
+.ncard .n3{font:400 12px "IBM Plex Sans";color:#8A97A6;margin-left:auto}
+
+/* end */
+.end .col{display:flex;flex-direction:column;align-items:center;text-align:center}
+.mark{font-weight:700;color:var(--ink);line-height:1}
+.line{font-family:"IBM Plex Sans";font-weight:400;color:var(--mute);margin-top:30px;line-height:1.3}
+.pill{margin-top:56px;display:inline-flex;align-items:center;gap:16px;background:var(--blue);color:#fff;font:600 30px "IBM Plex Sans";padding:24px 40px;border-radius:999px}
+.arrow{width:14px;height:14px;border-right:3px solid #fff;border-top:3px solid #fff;transform:rotate(45deg)}
+
+
+.s1 .wrap{flex-direction:column;gap:60px}
+.s1 .copy{width:900px;text-align:center}
+.split{flex-direction:column;gap:30px}
+.side{width:1000px;flex-direction:row !important;gap:40px;justify-content:center}
+.side .lab{order:-1}
+.phone{width:300px;height:560px}
+.tiltL{transform:rotateX(10deg) rotateY(10deg)}
+.tiltR{transform:rotateX(10deg) rotateY(-10deg)}
+.h1{font-size:78px}
+.cap{font-size:30px;width:420px;text-align:left}
+.side .meta{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+.end .mark{font-size:120px}
+.end .line{font-size:44px;width:900px}
+.desk{width:860px;height:560px}
+.s1 .phone{width:340px;height:660px}
+
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="30" data-width="1080" data-height="1350">
+
+  <div id="bg" class="clip" data-start="0" data-duration="30" data-track-index="0" style="position:absolute;inset:0">
+    <div id="floor"><div id="grid"></div></div><div id="vig"></div>
+  </div>
+
+  <!-- 1: the search -->
+  <div id="s1" class="scene s1 clip" data-start="0" data-duration="4.8" data-track-index="1">
+    <div class="wrap">
+      <div class="copy">
+        <div class="kick" id="s1k">6:58 pm</div>
+        <div class="h1 hd" id="s1h">Someone nearby needs a trade.</div>
+        <div class="sub" id="s1s">They search on their phone.</div>
+      </div>
+      <div class="phone" id="p1"><div class="notch"></div>
+        <div class="screen">
+          <div class="status"><span>6:58</span><span>&#9679;&#9679;&#9679;</span></div>
+          <div class="search"><div class="mag"></div><span id="typed"><span class="ch">p</span><span class="ch">l</span><span class="ch">u</span><span class="ch">m</span><span class="ch">b</span><span class="ch">e</span><span class="ch">r</span><span class="ch">&nbsp;</span><span class="ch">n</span><span class="ch">e</span><span class="ch">a</span><span class="ch">r</span><span class="ch">&nbsp;</span><span class="ch">m</span><span class="ch">e</span></span><div class="caret" id="caret"></div></div>
+          <div class="res r1"><div class="bar t"></div><div class="bar" style="width:92%"></div><div class="bar" style="width:60%"></div></div>
+          <div class="res r1"><div class="bar t" style="width:55%"></div><div class="bar" style="width:88%"></div><div class="bar" style="width:70%"></div></div>
+          <div class="res r1"><div class="bar t" style="width:64%"></div><div class="bar" style="width:80%"></div><div class="bar" style="width:50%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2: before / after websites -->
+  <div id="s2" class="scene clip" data-start="4.5" data-duration="8.8" data-track-index="2">
+    <div class="tag">Illustration</div>
+    <div class="split" id="sp2">
+      <div class="side" id="b2">
+        <div class="meta"><div class="lab">Before</div><div class="cap" id="b2c">Still loading. Tiny text.<br>No way to call.</div></div>
+        <div class="phone tiltL"><div class="notch"></div>
+          <div class="screen old">
+            <div class="status"><span>6:59</span><span>&#9679;&#9679;&#9679;</span></div>
+            <div class="hdr">WELCOME TO OUR WEBSITE!! FAMILY RUN BUSINESS — PLUMBING, HEATING, GENERAL MAINTENANCE &amp; MORE</div>
+            <div class="nav">Home About Services Gallery News Links Testimonials Contact</div>
+            <div class="ban" id="ban"></div>
+            <p>We are a family run business offering a wide range of plumbing, heating and general maintenance services across the area. Please see our services page for more information about the services we offer and the areas we cover.</p>
+            <p>For all enquiries please fill in the contact form on our contact page and we will endeavour to get back to you as soon as possible during normal office hours.</p>
+            <div class="boxes"><div></div><div></div><div></div></div>
+            <div class="veil"></div><div class="load" id="load"></div><div class="spin" id="spin"></div>
+            <div class="cookie">This website uses cookies to improve your experience. By continuing to browse you agree to our use of cookies.<br><span>Accept</span><span>Settings</span><span>More info</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="side" id="a2">
+        <div class="meta"><div class="lab after"><span class="dot"></span>After</div><div class="cap" id="a2c"><b>Loads clean. Easy to read.</b><br>One tap to call or enquire.</div></div>
+        <div class="phone tiltR"><div class="notch"></div>
+          <div class="screen new">
+            <div class="status"><span>6:59</span><span>&#9679;&#9679;&#9679;</span></div>
+            <div class="top a2i"><div class="brand">Your trade business</div><div class="burger"></div></div>
+            <h3 class="a2i">Plumbing repairs and installs.</h3>
+            <div class="lead a2i">Tell us what's wrong. We'll get back to you.</div>
+            <div class="rows">
+              <div class="row a2i">Leaks and bursts<div class="chev"></div></div>
+              <div class="row a2i">Boilers and heating<div class="chev"></div></div>
+              <div class="row a2i">Bathrooms<div class="chev"></div></div>
+            </div>
+            <div class="cta" id="cta"><div class="btn call">Call</div><div class="btn enq">Enquire<div class="ripple" id="rip"></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3: 7:04 pm, on a job -->
+  <div id="s3" class="scene s3 clip" data-start="13" data-duration="4.4" data-track-index="3">
+    <div class="col">
+      <div class="clock hd" id="clk">7:04 pm</div>
+      <div class="sub" id="s3s">An enquiry comes in. He's on a job.</div>
+      <div class="desk" id="desk">
+        <div class="phone flat" id="flat"><div class="notch"></div>
+          <div class="screen"><div class="glow" id="glow"></div><div class="note" id="fnote"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4: before / after enquiry -->
+  <div id="s4" class="scene clip" data-start="17" data-duration="8.6" data-track-index="4">
+    <div class="tag">Illustration</div>
+    <div class="split" id="sp4">
+      <div class="side" id="b4">
+        <div class="meta"><div class="lab">Before</div><div class="cap" id="b4c">No alert. No reply.<br>The enquiry just waits.</div></div>
+        <div class="phone tiltL"><div class="notch"></div>
+          <div class="screen inbox">
+            <div class="status"><span id="bclock">7:04</span><span>&#9679;&#9679;&#9679;</span></div>
+            <h4>Inbox</h4>
+            <div class="mail" id="m1"><div class="unread"></div><div><div class="l1">Website contact form</div><div class="l2">Hi, is anyone free to look at a leak under the sink? Thanks</div></div></div>
+            <div class="mail old2"><div class="av"></div><div><div class="l1">Supplier newsletter</div><div class="l2">This month's offers</div></div></div>
+            <div class="mail old2"><div class="av"></div><div><div class="l1">Account statement</div><div class="l2">Your statement is ready</div></div></div>
+            <div class="mail old2"><div class="av"></div><div><div class="l1">Delivery update</div><div class="l2">Your parcel is on its way</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="side" id="a4">
+        <div class="meta"><div class="lab after"><span class="dot"></span>After</div><div class="cap" id="a4c"><b>Captured. He's alerted.</b><br>The customer hears back.</div></div>
+        <div class="phone tiltR" id="p4r"><div class="notch"></div>
+          <div class="screen lock">
+            <div class="status"><span></span><span>&#9679;&#9679;&#9679;</span></div>
+            <div class="t">7:04</div><div class="d">Tuesday</div>
+            <div class="ncard" id="n1"><div class="n1"><span class="dot"></span>New enquiry<span class="n3">now</span></div><div class="n2">Leak under kitchen sink. Wants a call back.</div></div>
+            <div class="ncard" id="n2"><div class="n1">Reply sent to customer<span class="n3">now</span></div><div class="n2">"Thanks, we've got your enquiry. We'll call you back."</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5: end card -->
+  <div id="s5" class="scene end clip" data-start="25.2" data-duration="4.8" data-track-index="5">
+    <div class="col">
+      <div class="mark hd" id="mark">Propulsion</div>
+      <div class="line" id="eline">Websites that turn searches into booked jobs.</div>
+      <div class="pill" id="pill">Map your commercial system<span class="arrow"></span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+window.__timelines = window.__timelines || {};
+const tl = gsap.timeline({ paused: true });
+gsap.set("#flat", { rotationX: 58, rotationZ: -14, scale: .64, transformOrigin: "50% 0" });
+const E = "power3.out", IO = "power2.inOut";
+
+// floor drift for depth, whole film
+tl.fromTo("#grid", { y: 0 }, { y: -240, duration: 30, ease: "none" }, 0);
+
+// 1 search
+tl.from("#s1k", { opacity: 0, y: 20, duration: .6, ease: E }, .2)
+  .from("#s1h", { opacity: 0, y: 30, duration: .8, ease: E }, .35)
+  .from("#s1s", { opacity: 0, y: 20, duration: .7, ease: E }, .7)
+  .fromTo("#p1", { opacity: 0, rotationY: -38, rotationX: 10, z: -300 }, { opacity: 1, rotationY: -16, rotationX: 6, z: 0, duration: 1.4, ease: E }, .2)
+  .from("#typed .ch", { opacity: 0, duration: .01, stagger: .085 }, 1.1)
+  .from(".s1 .r1", { opacity: 0, y: 16, duration: .5, stagger: .12, ease: E }, 2.6)
+  .to("#p1", { rotationY: -10, duration: 3, ease: "sine.inOut" }, 1.6)
+  .to("#s1", { opacity: 0, duration: .5, ease: IO }, 4.3);
+
+// 2 before / after sites
+tl.fromTo("#s2", { opacity: 0 }, { opacity: 1, duration: .5 }, 4.5)
+  .fromTo("#b2", { x: -120, opacity: 0 }, { x: 0, opacity: 1, duration: 1.1, ease: E }, 4.6)
+  .fromTo("#a2", { x: 120, opacity: 0 }, { x: 0, opacity: 1, duration: 1.1, ease: E }, 4.8)
+  .fromTo("#sp2", { scale: .94 }, { scale: 1, duration: 8.5, ease: "sine.out" }, 4.5)
+  .to("#spin", { rotation: 360 * 9, duration: 8.6, ease: "none" }, 4.6)
+  .fromTo("#load", { width: "0%" }, { width: "31%", duration: 8, ease: "power2.out" }, 4.8)
+  .fromTo("#ban", { backgroundPosition: "0% 0" }, { backgroundPosition: "200% 0", duration: 8, ease: "none" }, 4.8)
+  .from(".a2i", { opacity: 0, y: 14, duration: .45, stagger: .07, ease: E }, 5.6)
+  .from("#cta", { y: 90, duration: .6, ease: E }, 6.1)
+  .from("#b2c", { opacity: 0, duration: .6 }, 6.6)
+  .from("#a2c", { opacity: 0, duration: .6 }, 6.8)
+  .fromTo("#rip", { scale: 0, opacity: .9 }, { scale: 6, opacity: 0, duration: .9, ease: "power2.out" }, 10.6)
+  .to("#s2", { opacity: 0, duration: .5, ease: IO }, 12.8);
+
+// 3 7:04 pm
+tl.fromTo("#s3", { opacity: 0 }, { opacity: 1, duration: .4 }, 13)
+  .from("#clk", { opacity: 0, y: 30, duration: .8, ease: E }, 13.1)
+  .from("#s3s", { opacity: 0, y: 20, duration: .7, ease: E }, 13.5)
+  .fromTo("#flat", { rotationZ: -24, opacity: 0, y: 40 }, { rotationZ: -14, opacity: 1, y: 0, duration: 1.4, ease: E }, 13.2)
+  .to("#glow", { opacity: 1, duration: .25 }, 14.6)
+  .to("#fnote", { opacity: 1, duration: .25 }, 14.6)
+  .to("#glow", { opacity: .35, duration: 1.2, ease: "sine.inOut" }, 15.0)
+  .to("#s3", { opacity: 0, duration: .5, ease: IO }, 16.9);
+
+// 4 before / after enquiry
+const clk = { m: 4 };
+tl.fromTo("#s4", { opacity: 0 }, { opacity: 1, duration: .5 }, 17)
+  .fromTo("#b4", { x: -120, opacity: 0 }, { x: 0, opacity: 1, duration: 1.1, ease: E }, 17.1)
+  .fromTo("#a4", { x: 120, opacity: 0 }, { x: 0, opacity: 1, duration: 1.1, ease: E }, 17.3)
+  .fromTo("#sp4", { scale: .94 }, { scale: 1, duration: 8, ease: "sine.out" }, 17)
+  .from("#m1", { opacity: 0, x: -20, duration: .5, ease: E }, 17.9)
+  .fromTo(clk, { m: 4 }, { m: 163, duration: 5.5, ease: "power1.in", onUpdate: () => {
+      const t = Math.round(clk.m), h = 7 + Math.floor(t / 60), mm = t % 60;
+      document.getElementById("bclock").textContent = h + ":" + String(mm).padStart(2, "0");
+    } }, 18.6)
+  .to("#m1", { opacity: .35, duration: 3, ease: "sine.inOut" }, 20.5)
+  .from("#n1", { opacity: 0, y: -40, scale: .96, duration: .7, ease: "back.out(1.4)" }, 18.4)
+  .from("#n2", { opacity: 0, y: -30, duration: .7, ease: E }, 20.0)
+  .from("#b4c", { opacity: 0, duration: .6 }, 19.0)
+  .from("#a4c", { opacity: 0, duration: .6 }, 19.3)
+  // after side takes the frame
+  .to("#b4", { opacity: 0, x: -80, duration: .8, ease: IO }, 24.0)
+  .to("#a4", { opacity: 0, scale: 1.08, duration: .9, ease: IO }, 24.4)
+  .to("#s4 .tag", { opacity: 0, duration: .5 }, 24.0);
+
+// 5 end card
+tl.fromTo("#s5", { opacity: 0 }, { opacity: 1, duration: .4 }, 25.2)
+  .fromTo("#mark", { opacity: 0, y: 30, rotationX: 30 }, { opacity: 1, y: 0, rotationX: 0, duration: 1.1, ease: E }, 25.3)
+  .from("#eline", { opacity: 0, y: 20, duration: .8, ease: E }, 25.9)
+  .from("#pill", { opacity: 0, y: 20, scale: .96, duration: .8, ease: E }, 26.5);
+
+window.__timelines["main"] = tl;
+tl.seek(0);
+</script>
+</body>
+</html>
