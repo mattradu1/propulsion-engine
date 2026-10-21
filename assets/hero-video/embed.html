@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hero Video Embed</title>
+<link rel="preload" as="image" href="poster.jpg" media="(min-width: 768px)">
+<link rel="preload" as="image" href="poster-mobile.jpg" media="(max-width: 767px)">
+<style>
+  :root { --ground: #04070A; }
+  html, body { margin: 0; background: var(--ground); }
+  .hero { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: var(--ground); }
+  .hero video, .hero picture, .hero picture img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hero picture { display: none; }
+  @media (max-width: 767px) { .hero { aspect-ratio: 4 / 5; } }
+  /* Reduced motion: no video at all, poster only */
+  @media (prefers-reduced-motion: reduce) {
+    .hero video { display: none; }
+    .hero picture { display: block; }
+  }
+</style>
+</head>
+<body>
+<section class="hero" aria-label="Illustration: a slow trade website versus a clear one that captures an enquiry">
+  <!-- Silent, decorative loop. No audio track. Phones get the lighter 4:5 cut. -->
+  <video autoplay muted loop playsinline preload="metadata" poster="poster.jpg" aria-hidden="true">
+    <source src="hero-mobile-1080x1350.mp4" type="video/mp4" media="(max-width: 767px)">
+    <source src="hero-1920x1080.webm" type="video/webm" media="(min-width: 768px)">
+    <source src="hero-1920x1080.mp4" type="video/mp4">
+  </video>
+  <picture>
+    <source srcset="poster-mobile.jpg" media="(max-width: 767px)">
+    <img src="poster.jpg" alt="Before and after: a cluttered trade website still loading next to a clean one with Call and Enquire buttons." width="1920" height="1080">
+  </picture>
+</section>
+<script>
+  // <source media> is honoured by current Chrome/Safari/Firefox, but older browsers ignore it,
+  // so pick the poster by width too and stop playback when reduced motion is requested.
+  (function () {
+    var v = document.querySelector('.hero video');
+    if (!v) return;
+    var small = window.matchMedia('(max-width: 767px)');
+    if (small.matches) v.setAttribute('poster', 'poster-mobile.jpg');
+    var rm = window.matchMedia('(prefers-reduced-motion: reduce)');
+    function apply() {
+      if (rm.matches) { v.pause(); v.removeAttribute('autoplay'); }
+      else { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+    }
+    apply();
+    if (rm.addEventListener) rm.addEventListener('change', apply);
+  })();
+</script>
+</body>
+</html>
